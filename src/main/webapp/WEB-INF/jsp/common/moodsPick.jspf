@@ -1,0 +1,27 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<table>
+<tr style="padding-right:5px;padding-top: 10px">
+
+	<c:forEach items="${moods}" var="mood" varStatus="loop">
+	
+		<c:if test="${(loop.index -1) % 7 == 0 && loop.index != 1}"> 
+                        
+                            </tr>
+                           
+                           
+                        <tr style="padding-right:5px;padding-top: 8px">
+                           
+						</c:if>
+				 <td style="padding-right:5px;padding-top: 8px;" align="center">		
+		<form action="moodPicked" method="post">
+			<input type="hidden" name="userId" value="${user.id}"> <input
+				type="hidden" name="moodId" value="${mood.id}"> <input
+				type="submit" class="btn btn-primary" name="mood"
+				value="${mood.name}">&nbsp&nbsp
+		</form>
+		</td>
+
+	</c:forEach>
+	
+	</tr>
+	</table>

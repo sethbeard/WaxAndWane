@@ -1,0 +1,49 @@
+<div style="background-color:#e7e7e7;">
+<br>
+	<h1 style="color:black;">
+			<img src="https://live.staticflickr.com/65535/50631417172_897509865d_b.jpg" width="50" height="50" alt="waxandwane1">
+			Wax And Wane
+		</h1>
+		<br>
+		<table> <tr>
+		<form action="mainpage" method="Post">
+					<input type="hidden" name="userId" value="${user.id}">
+<input type="submit" class="btn btn-info" value="Home">
+</form>
+      
+			
+       <form action="pickAMood" method="Post">
+<input type="hidden" name="userId" value="${user.id}">
+<input type="submit" class="btn btn-info" value="Find a Record">
+</form>
+     
+      
+       <form action="moodCreation" method="Post">
+<input type="hidden" name="user" value="${user.id}">
+<input type="submit" class="btn btn-info" value="Add Moods">
+</form>
+    
+       <form action="recordCreation" method="Post">
+<input type="hidden" name="userId" value="${user.id}">
+<input type="submit" class="btn btn-info" value="Add Records">
+</form>
+     <form action="showUnassigned"
+					method="Post">
+<input type="hidden" name="userId" value="${user.id}">
+<input type="hidden" name="mood" value="0">
+<input type="submit" class="btn btn-info" value="Assign Moods">
+</form><form action="editRecords" method="Get">
+<input type="hidden" name="userId" value="${user.id}">
+<input type="hidden" name="mood" value="0">
+<input type="submit" class="btn btn-info" value="Edit Records">
+</form>
+
+</tr>
+</table>
+
+   <ul style="float:right;">
+			<li><a href="/">Logout</a></li>
+		</ul> 
+		
+ 
+  </div>

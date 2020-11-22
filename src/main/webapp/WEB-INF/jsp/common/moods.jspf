@@ -1,0 +1,28 @@
+
+<table>
+	<tr style="padding-right: 5px; padding-top: 10px">
+		<td style="padding-right: 5px; padding-top: 10px"><form
+				action="showUnassigned" method="Post">
+				<input type="hidden" name="userId" value="${user.id}"> <input
+					type="hidden" name="mood" value="0"> <input type="submit"
+					class="btn btn-primary" value="Unassigned">
+			</form></td>
+		
+		<c:forEach items="${moods}" var="mood">
+			<c:if test="${(loop.index -1) % 7 == 0 && loop.index != 1}">
+	</tr>
+
+
+	<tr style="padding-right: 5px; padding-top: 10px">
+
+		</c:if>
+			<td style="padding-right: 5px; padding-top: 8px">
+				<form action="showUnassigned" method="Post">
+					<input type="hidden" name="userId" value="${user.id}"> <input
+						type="hidden" name="mood" value="${mood.id}"> <input
+						type="submit" class="btn btn-primary" value="${mood.name}">
+				</form>
+			</td>
+		</c:forEach>
+	</tr>
+</table>
