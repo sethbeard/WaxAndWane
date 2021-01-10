@@ -9,22 +9,20 @@
 <title>Insert title here</title>
 </head>
 <body class="text-light bg-dark">
-<br><br>
-<div  style="display:inline-flex" align="left">
+
+<div  style="display:inline-flex;padding:40px" align="left" >
 <form action="editRecord" method="post">
 <label for="artist">Artist:</label><br>
 <input type="text" name="artist" id="artist" value="${record.artist}"/><br><br>
 Title:<br>
-<input type="text" name="title" value="${record.title}"/><br>
-
-<input type="hidden" name="userId" value="${user.id}">
+<input type="text" name="title" value="${record.title}" /><br>
 <input type="hidden" name="moodId" value="${moodId}">
 <input type="hidden" name="recordId" value="${record.id}"/>
 
-<input type="submit" name="editRecord" class="btn btn-primary" value="Save"/>
+<input type="submit" name="editRecord" class="btn btn-primary" value="Save" style="margin-top:15px"/>
 </form>
 </div>
-<c:if test="${moodId != 0 }">
+<c:if test="${emptyMoods ne true }">
 <div style="display:inline-block; align-content: center;padding-left: 40px">
 Click A Mood To Untag:
 
@@ -43,11 +41,11 @@ Click A Mood To Untag:
 						</c:if>
 				 <td style="padding-right:5px;padding-top: 10px;" align="center">		
 		<form action="untagRecord" method="post">
-			<input type="hidden" name="userId" value="${user.id}"> <input
+			 <input
 				type="hidden" name="moodId" value="${mood.id}">
 				<input type="hidden" name="recordId" value="${record.id}"> <input
 				type="submit" class="btn btn-primary" name="mood"
-				value="${mood.name}">
+				value="${mood.name}" style="margin-top:10px">
 		</form>
 		</td>
 

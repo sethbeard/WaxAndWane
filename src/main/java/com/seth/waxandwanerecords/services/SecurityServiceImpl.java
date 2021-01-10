@@ -1,4 +1,4 @@
-package com.seth.blargh.services;
+package com.seth.waxandwanerecords.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,14 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import com.seth.blargh.controllers.UserController;
-
 @Service
 public class SecurityServiceImpl implements SecurityService {
 @Autowired
 private UserDetailsService userDetailsService;
 
-private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
 @Autowired
 private AuthenticationManager authManager;
@@ -25,6 +23,7 @@ private AuthenticationManager authManager;
 @Override
 	public boolean login(String username, String password) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+		LOGGER.warn("After User Details");
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, password,userDetails.getAuthorities());
 		authManager.authenticate(token);
 		boolean result = token.isAuthenticated();
@@ -32,6 +31,7 @@ private AuthenticationManager authManager;
 		if (result) {
 			SecurityContextHolder.getContext().setAuthentication(token);
 		}
+		LOGGER.warn("Here");
 		return result;
 	}
 

@@ -1,4 +1,4 @@
-package com.seth.blargh.entities;
+package com.seth.waxandwanerecords.entities;
 
 
 	import java.util.Set;

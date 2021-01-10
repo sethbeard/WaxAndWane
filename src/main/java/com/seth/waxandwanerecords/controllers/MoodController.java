@@ -1,8 +1,10 @@
-package com.seth.blargh.controllers;
+package com.seth.waxandwanerecords.controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.seth.blargh.entities.Mood;
-import com.seth.blargh.entities.User;
-import com.seth.blargh.repositories.MoodRepository;
-import com.seth.blargh.repositories.MoodSetterRepository;
-import com.seth.blargh.repositories.UserRepository;
+import com.seth.waxandwanerecords.entities.Mood;
+import com.seth.waxandwanerecords.entities.User;
+import com.seth.waxandwanerecords.repositories.MoodRepository;
+import com.seth.waxandwanerecords.repositories.MoodSetterRepository;
+import com.seth.waxandwanerecords.repositories.UserRepository;
 
 @Controller
 public class MoodController {
@@ -26,41 +28,47 @@ public class MoodController {
 	@Autowired
 	MoodSetterRepository moodSetRepos;
 
-//sends them to the page to create and edit moods
+	// gets the user from the authentication to use within the controller
+	private User getUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userRepos.findByEmail(auth.getName());
+		return user;
+	}
+
+	// sends them to the page to create and edit moods
 	@RequestMapping(value = "/moodCreation", method = RequestMethod.POST)
-	public String showAddMood(@RequestParam("user") int id, ModelMap modelMap) {
-		// find user
-		User user = userRepos.findById(id).get();
+	public String showAddMood(ModelMap modelMap) {
+		User user = getUser();
 		// create a list of all moods for user id
-		List<Mood> moods = moodRepos.findMoods(id);
+		List<Mood> moods = moodRepos.findMoods(user.getId());
 		modelMap.addAttribute("moods", moods);
 		modelMap.addAttribute(user);
 		return "AddMood";
 	}
 
-//shows the edit mood option.  Sends the mood and user back to the jsp
+	//shows the edit mood option.  Sends the mood and user back to the jsp
 	@RequestMapping(value = "/ShowEditMood", method = RequestMethod.GET)
-	public String showEditMood(@RequestParam("moodId") int id, @RequestParam("userId") int userId, ModelMap modelMap) {
-		User user = userRepos.findById(userId).get();
+	public String showEditMood(@RequestParam("moodId") int id, ModelMap modelMap) {
+		User user = getUser();
 		Mood mood = moodRepos.findById(id).get();
 		modelMap.addAttribute("mood", mood);
 		modelMap.addAttribute("user", user);
 		return "editMood";
 	}
 
-//adds the mood to the db if it doesn't already exist for the user. 
+	//adds the mood to the database if it doesn't already exist for the user. 
 	@RequestMapping(value = "/addMood", method = RequestMethod.POST)
-	public String addMood(@ModelAttribute("mood") Mood mood, @RequestParam("userId") int id, ModelMap modelMap) {
+	public String addMood(@ModelAttribute("mood") Mood mood, ModelMap modelMap) {
 		String msg;
-		User user = userRepos.findById(id).get();
-		// Check to see if mood exists 
-		if (moodRepos.findMoodByName(id, mood.getName()) != null) {
+		User user = getUser();
+		// Check to see if mood exists
+		if (moodRepos.findMoodByName(user.getId(), mood.getName()) != null) {
 			msg = "Mood already exists";
-		//Check if mood is empty
+			// Check if mood is empty
 		} else if (mood.getName().equals("")) {
 			msg = "Please Enter A Name";
-		} 
-		//save user 
+		}
+		// save user
 		else {
 			mood.setUser(user);
 			moodRepos.save(mood);
@@ -75,9 +83,9 @@ public class MoodController {
 
 	// Deletes mood
 	@RequestMapping("/DeleteMood")
-	public String deleteMood(@RequestParam("moodId") int id, @RequestParam("userId") int userId, ModelMap modelMap) {
-		User user = userRepos.findById(userId).get();
+	public String deleteMood(@RequestParam("moodId") int id, ModelMap modelMap) {
 		String msg = "Mood " + moodRepos.findById(id).get().getName() + " removed";
+		User user = getUser();
 		moodRepos.deleteById(id);
 		List<Mood> moods = moodRepos.findMoods(user.getId());
 		modelMap.addAttribute("msg", msg);
@@ -86,11 +94,10 @@ public class MoodController {
 		return "AddMood";
 	}
 
-	//updates the mood
+	// updates the mood
 	@RequestMapping("/editmood")
-	public String editMood(@RequestParam("moodId") int id, @RequestParam("name") String name,
-			@RequestParam("userId") int userId, ModelMap modelMap) {
-		User user = userRepos.findById(userId).get();
+	public String editMood(@RequestParam("moodId") int id, @RequestParam("name") String name, ModelMap modelMap) {
+		User user = getUser();
 		Mood mood = moodRepos.findById(id).get();
 		mood.setName(name);
 		List<Mood> moods = moodRepos.findMoods(user.getId());
@@ -100,12 +107,11 @@ public class MoodController {
 		return "AddMood";
 	}
 
-	
-	//returns list of moods
+	// returns list of moods
 	@RequestMapping("/pickAMood")
-	public String showMoodPick(@RequestParam("userId") int id, ModelMap modelMap) {
-		User user = userRepos.findById(id).get();
-		List<Mood> moods = moodRepos.findMoods(id);
+	public String showMoodPick(ModelMap modelMap) {
+		User user = getUser();
+		List<Mood> moods = moodRepos.findMoods(user.getId());
 		modelMap.addAttribute("moods", moods);
 		modelMap.addAttribute(user);
 		return "PickMood";

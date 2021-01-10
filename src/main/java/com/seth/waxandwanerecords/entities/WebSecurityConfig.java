@@ -1,4 +1,4 @@
-package com.seth.blargh.entities;
+package com.seth.waxandwanerecords.entities;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/","registerUser","/showReg", "/showLogin","/registerUser","/login").permitAll().antMatchers("/admin").hasAnyAuthority("ADMIN").anyRequest().authenticated().and().csrf().disable();
+		http.authorizeRequests().antMatchers("/","registerUser","/showReg","/Contact","/About", "/showLogin","/registerUser","/login").permitAll().antMatchers("/admin").hasAnyAuthority("ADMIN").anyRequest().authenticated().and().csrf().disable();
 	//.antMatchers("").hasAnyAuthority("ADMIN")
 	
 	}

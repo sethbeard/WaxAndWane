@@ -1,4 +1,4 @@
-package com.seth.blargh.services;
+package com.seth.waxandwanerecords.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,18 +8,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.seth.waxandwanerecords.entities.User;
+import com.seth.waxandwanerecords.repositories.UserRepository;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 	@Autowired
-	com.seth.blargh.repositories.UserRepository userRepos;
+	UserRepository userRepos;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		LOGGER.warn("inside user details service impl");
 		
-		com.seth.blargh.entities.User user = userRepos.findByEmail(username);
-		LOGGER.warn("user "+ user.getEmail());
+		User user = userRepos.findByEmail(username);
 		if(user==null)
 		{
 			throw new UsernameNotFoundException("User not found for email " +username);

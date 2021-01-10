@@ -8,14 +8,13 @@
 <meta charset="ISO-8859-1">
 <title>Edit Mood</title>
 </head>
-<body class="text-light bg-dark">
-<div class="form-group">
+<body class="text-light bg-dark" >
+<div class="form-group" style="padding:20px">
 <form action="editmood" method="post">
 <input type="text" name="name" value="${mood.name}"/>
-<input type="hidden" name="userId" value="${user.id}">
 <input type="hidden" name="moodId" value="${mood.id}">
 <br>
-<input type="submit" class="btn btn-primary" name="editmood"/>
+<input type="submit" class="btn btn-primary" name="editmood" style="margin-top:15px" value="Save"/>
 </form>
 </div>
 </body>

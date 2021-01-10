@@ -1,4 +1,4 @@
-package com.seth.blargh;
+package com.seth.waxandwanerecords;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.seth.blargh")
+@ComponentScan("com.seth.waxandwanerecords")
 public class WaxAndWaneFix1Application extends SpringBootServletInitializer {
 
 

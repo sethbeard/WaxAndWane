@@ -1,8 +1,8 @@
-package com.seth.blargh.repositories;
+package com.seth.waxandwanerecords.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.seth.blargh.entities.User;
+import com.seth.waxandwanerecords.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 

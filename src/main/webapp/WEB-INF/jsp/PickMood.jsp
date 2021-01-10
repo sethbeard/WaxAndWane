@@ -10,7 +10,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <body class="text-light bg-dark">
-<br>
+<div style="padding:20px">
 <table>
 <tr style="padding-right:5px;padding-top: 10px">
 
@@ -26,7 +26,7 @@
 						</c:if>
 				 <td style="padding-right:5px;padding-top: 10px;" align="center">		
 		<form action="moodPicked" method="post">
-			<input type="hidden" name="userId" value="${user.id}"> <input
+			  <input
 				type="hidden" name="moodId" value="${mood.id}"> <input
 				type="submit" class="btn btn-primary" name="mood"
 				value="${mood.name}">&nbsp&nbsp
@@ -37,4 +37,5 @@
 	
 	</tr>
 	</table>
+	</div>
 </html>

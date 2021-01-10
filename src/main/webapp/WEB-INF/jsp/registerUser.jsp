@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	  <%@ include file="common/header.jspf" %>
+	
 	 
 <!DOCTYPE html>
 <html>
@@ -50,17 +51,17 @@
 	}
 </script>
 </head>
-<body class="text-light bg-dark">
+<body class="text-light bg-dark" >
 <div style="background-color:#e7e7e7;">
 <br>
-	<h2 style="color:black;"><img src="https://live.staticflickr.com/65535/50631417172_897509865d_b.jpg" width="50" height="50" alt="waxandwane1"> &nbsp Sign Up For A New Account:</h2>
+	<h1 style="color: black; font-size:60px; font-weight: bolder;"><img src="https://live.staticflickr.com/65535/50631417172_897509865d_b.jpg" width="60" height="60" alt="waxandwane1"> Sign Up For A New Account:</h1>
 	  <ul style="float:right;">
 			<li><a href="/showLogin">Login</a></li>
 		</ul> 
 	<br>
 	</div>
 	<pre>
-	<div class="form-group" style="color:white;">
+	<div class="form-group" style="color:white;margin-left:20px" >
 <form action="registerUser" method="post"
 			onSubmit="return checkPassword(this)">
 User Name: 

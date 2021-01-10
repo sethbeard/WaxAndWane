@@ -1,4 +1,4 @@
-package com.seth.blargh.services;
+package com.seth.waxandwanerecords.services;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.seth.blargh.entities;
+package com.seth.waxandwanerecords.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.seth.blargh;
+package com.seth.waxandwanerecords;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -10,10 +10,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit Records</title>
 </head>
 <body class="text-light bg-dark">
-
+<div style="padding:20px">
 	<table class="table table-dark">
 		<tr>
 			<th width="30%">Artist</th>
@@ -24,13 +24,14 @@
 				<td>${record.artist}</td>
 				<td>${record.title }</td>
 				<td><a
-					href="ShowEditRecord?recordId=${record.id}&userId=${user.id}&moodId=${moodId}"><button
+					href="ShowEditRecord?recordId=${record.id}&moodId=${moodId}"><button
 							class="btn btn-primary">Edit</button></a></td>
 				<td><a
-					href="DeleteRecord?recordId=${record.id}&userId=${user.id}&moodId=${moodId}"><button
+					href="DeleteRecord?recordId=${record.id}&moodId=${moodId}"><button
 							class="btn btn-danger">Delete</button></a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
 </body>
 </html>

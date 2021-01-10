@@ -10,7 +10,7 @@
 <meta charset="ISO-8859-1">
 <title>Add Record</title>
 </head>
-<body class="text-light bg-dark">
+<body class="text-light bg-dark" style="margin:20px">
 	<br>
 	<br>
 	<div class="form-group">
@@ -36,7 +36,7 @@
 					</td>
 				</tr>
 			</table>
-			<br> <input type="hidden" name="userId" value="${user.id}">
+			<br>
 			<input type="submit" class="btn btn-primary" name="addRecord"
 				value="Add Record" />
 
